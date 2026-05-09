@@ -1,42 +1,30 @@
 package com.narxoz.rpg.quest;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-/**
- * Aggregate root for quests.
- *
- * The internal list is deliberately hidden. Clients must request a
- * QuestIterator instead of reaching into the aggregate's collection.
- */
 public class QuestLog {
-
     private final List<Quest> quests = new ArrayList<>();
 
-    public void add(Quest quest) {
+    public void addQuest(Quest quest) {
         if (quest != null) {
             quests.add(quest);
         }
     }
 
-    public int size() {
-        return quests.size();
+    public List<Quest> snapshot() {
+        return new ArrayList<>(quests);
     }
 
-    public QuestIterator ordered() {
+    public QuestIterator getOrderedIterator() {
         return new OrderedQuestIterator(this);
     }
 
-    public QuestIterator reverse() {
+    public QuestIterator getReverseIterator() {
         return new ReverseQuestIterator(this);
     }
 
-    public QuestIterator priorityAtLeast(QuestPriority threshold) {
+    public QuestIterator getPriorityIterator(QuestPriority threshold) {
         return new PriorityQuestIterator(this, threshold);
-    }
-
-    List<Quest> snapshot() {
-        return Collections.unmodifiableList(new ArrayList<>(quests));
     }
 }
