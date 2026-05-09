@@ -13,6 +13,11 @@ public class Hero {
     private final int attackPower;
     private final int defense;
 
+    public Hero(String name) {
+        // Вызываем основной конструктор с базовыми значениями
+        this(name, 100, 0, 10, 5, 0);
+    }
+
     public Hero(String name, int hp, int attackPower, int defense) {
         this(name, hp, 0, attackPower, defense, 0);
     }
@@ -77,13 +82,13 @@ public class Hero {
 
     @Override
     public String toString() {
-        return "Hero{"
-                + "name='" + name + '\''
-                + ", hp=" + hp
-                + ", mana=" + mana
-                + ", gold=" + gold
-                + ", attackPower=" + attackPower
-                + ", defense=" + defense
-                + '}';
+        return "Hero{" +
+                "name='" + name + '\'' +
+                ", hp=" + hp +
+                ", mana=" + mana +
+                ", gold=" + gold +
+                ", attackPower=" + attackPower +
+                ", defense=" + defense +
+                '}';
     }
 }
